@@ -1,3 +1,27 @@
+func merge(intervals [][]int) [][]int {
+    sort.Slice(intervals, func(i, j int) bool {
+        return intervals[i][0] < intervals[j][0]
+    })
+    ans := [][]int{}
+    for _, interval := range intervals {
+        n := len(ans)
+        if n == 0 || ans[n-1][1] < interval[0] {
+            ans = append(ans, interval)
+        } else {
+            ans[n-1][1] = max(ans[n-1][1], interval[1])
+        }
+    }
+    return ans
+}
+
+func max(x, y int) int {
+    if x > y {
+        return x
+    }
+    return y
+}
+
+/*
 type Intervals [][]int
 
 func (intervals Intervals) Len() int {
@@ -32,3 +56,4 @@ func merge(intervals [][]int) [][]int {
     ans = append(ans, tmp)
     return ans
 }
+*/

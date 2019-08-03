@@ -1,7 +1,4 @@
 #coding: utf-8
-'''
-https://leetcode.com/discuss/99229/leetbook-2种思路中文详（附解释，图示，代码）
-'''
 
 class Solution(object):
     def isMatch(self, s, p):

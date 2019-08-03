@@ -37,12 +37,25 @@ func divideConquer(lists []*ListNode, left int, right int) *ListNode {
     return mergeTwoLists(l1, l2)
 }
 
-// O(N*logK), 8ms < 99.75%; O(1), 5.3MB < 100% 
+// O(N*logK), 4-8ms < 99.75%; O(1), 5.3MB < 100% 
 func mergeKLists(lists []*ListNode) *ListNode {
     if len(lists) == 0 {
         return nil
     }
     return divideConquer(lists, 0, len(lists)-1)
+    /*
+    n := len(lists)
+    if n == 0 {
+        return nil
+    }
+    for n > 1 {
+        for i := 0; i < n/2; i++ {
+            lists[i] = mergeTwoLists(lists[i], lists[n-i-1])
+        }
+        n = (n+1) / 2
+    }
+    return lists[0]
+    */
 }
 
 // O(N*K), 108ms < 34.41%; O(1), 5.3MB < 100%

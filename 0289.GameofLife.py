@@ -4,6 +4,7 @@ class Solution(object):
         :type board: List[List[int]]
         :rtype: void Do not return anything, modify board in-place instead.
         """
+        // O(mn) + O(1), cool
         m = len(board)
         n = len(board[0])
         for i in xrange(m):

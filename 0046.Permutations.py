@@ -4,6 +4,7 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[List[int]]
         """
+        # return list(itertools.permutations(nums))
         ans = []
         self.dfs(nums, [], ans)
         return ans

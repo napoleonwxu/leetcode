@@ -1,53 +1,53 @@
 func orderOfLargestPlusSign(N int, mines [][]int) int {
-    Map := make(map[int]int)
+    zero := make(map[int]bool, len(mines))
     for _, mine := range mines {
-        Map[mine[0]*N+mine[1]] = 1
+        zero[mine[0]*N+mine[1]] = true
     }
-    dp := make([][]int, N)
-    for i := range dp {
-        dp[i] = make([]int, N)
+    order := make([][]int, N)
+    for i := range order {
+        order[i] = make([]int, N)
     }
     ans := 0
     for i := 0; i < N; i++ {
         cnt := 0
         for j := 0; j < N; j++ {
-            if Map[i*N+j] == 1 {
+            if zero[i*N+j] {
                 cnt = 0
             } else {
                 cnt++
             }
-            dp[i][j] = cnt
+            order[i][j] = cnt
         }
         cnt = 0
         for j := N-1; j >= 0; j-- {
-            if Map[i*N+j] == 1 {
+            if zero[i*N+j] {
                 cnt = 0
             } else {
                 cnt++
             }
-            dp[i][j] = min(dp[i][j], cnt)
+            order[i][j] = min(order[i][j], cnt)
         }
     }
     for j := 0; j < N; j++ {
         cnt := 0
         for i := 0; i < N; i++ {
-            if Map[i*N+j] == 1 {
+            if zero[i*N+j] {
                 cnt = 0
             } else {
                 cnt++
             }
-            dp[i][j] = min(dp[i][j], cnt)
+            order[i][j] = min(order[i][j], cnt)
         }
         cnt = 0
         for i := N-1; i >= 0; i-- {
-            if Map[i*N+j] == 1 {
+            if zero[i*N+j] {
                 cnt = 0
             } else {
                 cnt++
             }
-            dp[i][j] = min(dp[i][j], cnt)
-            if dp[i][j] > ans {
-                ans = dp[i][j]
+            order[i][j] = min(order[i][j], cnt)
+            if order[i][j] > ans {
+                ans = order[i][j]
             }
         }
     }

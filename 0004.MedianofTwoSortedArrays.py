@@ -5,14 +5,14 @@ class Solution(object):
         :type nums2: List[int]
         :rtype: float
         """
-        # binary search, O(log(min(m, n)))
+        # binary search, O(log(m+n))
         l = len(nums1) + len(nums2)
         if l%2:
             return self.findKth(nums1, nums2, l/2)
         else:
             return (self.findKth(nums1, nums2, l/2-1) + self.findKth(nums1, nums2, l/2)) / 2.0
 
-        ''' # merge, O(m+n)
+        ''' # merge, O(m+n) + O(m+n)
         nums = []
         i = j = 0
         while i < len(nums1) and j < len(nums2):
