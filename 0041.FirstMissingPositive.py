@@ -10,7 +10,7 @@ class Solution(object):
             while 0 < nums[i] <= l and nums[i] != nums[nums[i]-1]:
                 temp = nums[i]
                 nums[i], nums[temp-1] = nums[temp-1], nums[i]
-        print nums
+        #print nums
         for i in xrange(l):
             if nums[i] != i+1:
                 return i+1

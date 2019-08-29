@@ -1,5 +1,6 @@
 func pathInZigZagTree(label int) []int {
-    ans := []int{}
+	ans := []int{}
+	// O(logN)
     for ; label > 0; label >>= 1 {
         ans = append(ans, label)
     }

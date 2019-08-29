@@ -22,6 +22,7 @@ class Solution(object):
                 buy[j] = max(buy[j], sel[j-1]-prices[i])
                 sel[j] = max(sel[j], buy[j]+prices[i])
         '''
+        # O(kn) + O(k)
         buy = [-float('inf')]*(k+1)
         sel = [0]*(k+1)
         for i in xrange(len(prices)):

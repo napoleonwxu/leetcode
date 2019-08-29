@@ -1,6 +1,6 @@
 func longestWord(words []string) string {
     sort.Strings(words)
-    Map := make(map[string]bool, len(words))
+    Map := make(map[string]bool)
     ans := ""
     for _, word := range words {
         n := len(word)

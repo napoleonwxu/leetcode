@@ -1,6 +1,7 @@
 func distributeCandies(candies int, num_people int) []int {
     ans := make([]int, num_people)
-    c := 1
+	c := 1
+	// O(sqrt(candies))
     for candies > 0 {
         for i := 0; i < num_people; i++ {
             if c <= candies {

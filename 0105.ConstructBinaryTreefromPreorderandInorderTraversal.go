@@ -23,5 +23,5 @@ func index(inorder []int, val int) int {
             return i
         }
     }
-    return 0
+    return -1
 }

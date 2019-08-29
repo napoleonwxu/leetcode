@@ -1,3 +1,6 @@
+# Wrong answer to use slope as key due to decimal precision, 
+# ex: [[0,0],[94911151,94911150],[94911152,94911151]]
+
 # Definition for a point.
 class Point(object):
     def __init__(self, a=0, b=0):
