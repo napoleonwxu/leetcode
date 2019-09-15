@@ -13,7 +13,7 @@ class Solution(object):
                 new = left + right + 1
                 ans = max(ans, new)
                 dic[num] = dic[num-left] = dic[num+right] = new
-            print dic
+            #print dic
         return ans
 
 test = Solution()
