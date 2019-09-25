@@ -9,13 +9,12 @@
     if head == nil || head.Next == nil {
         return head
     }
-    mid, end := head, head
-    var prev *ListNode
-    for end != nil && end.Next != nil {
-        prev = mid
-        mid, end = mid.Next, end.Next.Next
+    slow, fast := head, head.Next
+    for fast != nil && fast.Next != nil {
+        slow, fast = slow.Next, fast.Next.Next
     }
-    prev.Next = nil
+    mid := slow.Next
+    slow.Next = nil
     return merge(sortList(head), sortList(mid))
 }
 

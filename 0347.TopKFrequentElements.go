@@ -1,22 +1,28 @@
 func topKFrequent(nums []int, k int) []int {
+    ans := make([]int, 0, k)
     Map := make(map[int]int)
+    // O(n) + O(n)
+    maxCnt := 0
+    for _, num := range nums {
+        Map[num]++
+        if Map[num] > maxCnt {
+            maxCnt = Map[num]
+        }
+    }
+    bucket := make([][]int, maxCnt+1)
+    for num, cnt := range Map {
+        bucket[cnt] = append(bucket[cnt], num)
+    }
+    cnt := maxCnt
+    for k > 0 {
+        ans = append(ans, bucket[cnt]...)
+        k -= len(bucket[cnt])
+        cnt--
+    }
+    /* sort, max(O(n), O(ulgu)) + O(n), u: len(unique)
     for _, num := range nums {
         Map[num]++
     }
-    ans := make([]int, 0, k)
-    bucket := make([][]int, len(nums)+1)
-    for num, c := range Map {
-        bucket[c] = append(bucket[c], num)
-    }
-    c := len(nums)
-    for k > 0 {
-        if len(bucket[c]) > 0 {
-            ans = append(ans, bucket[c]...)
-            k -= len(bucket[c])
-        }
-        c--
-    }
-    /* sort, O(ulgu) u: len(unique)
     cnt := make([]int, 0, len(Map))
     for _, c := range Map {
         cnt = append(cnt, c)

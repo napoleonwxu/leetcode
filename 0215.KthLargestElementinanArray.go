@@ -15,6 +15,19 @@ func findKthLargest(nums []int, k int) int {
 }
 
 func partition(nums []int, l, r int) int {
+    mid := l
+    for i := l; i < r; i++ {
+        if nums[i] > nums[r] {
+            nums[mid], nums[i] = nums[i], nums[mid]
+            mid++
+        }
+    }
+    nums[mid], nums[r] = nums[r], nums[mid]
+    return mid
+}
+
+/*
+func partition(nums []int, l, r int) int {
     pivot := nums[l]
     for l < r {
         for ; l < r && nums[r] <= pivot; r-- {}
@@ -25,3 +38,4 @@ func partition(nums []int, l, r int) int {
     nums[l] = pivot
     return l
 }
+*/
