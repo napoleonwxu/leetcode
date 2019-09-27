@@ -1,6 +1,7 @@
 const MOD = 1e9 + 7
 
 func findPaths(m int, n int, N int, i int, j int) int {
+    // O(N*m*n)
     direction := [][]int{{-1, 0}, {0, -1}, {0, 1}, {1, 0}}
     dp := make([][]int, m)
     for im := range dp {
