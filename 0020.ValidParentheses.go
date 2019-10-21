@@ -1,17 +1,17 @@
 func isValid(s string) bool {
-    stack := []rune{}
-    for _, ch := range s {
-        if len(stack) == 0 || ch == '(' || ch == '{' || ch == '[' {
-            stack = append(stack, ch)
-        } else if ch == ')' && stack[len(stack)-1] == '('{
-            stack = stack[:len(stack)-1]
-        } else if ch == '}' && stack[len(stack)-1] == '{'{
-            stack = stack[:len(stack)-1]
-        } else if ch == ']' && stack[len(stack)-1] == '['{
-            stack = stack[:len(stack)-1]
+    stack := make([]byte, len(s))
+    n := 0
+    for i := 0; i < len(s); i++ {
+        if s[i] == ')' || s[i] == ']' || s[i] == '}' {
+            if n > 0 && ((stack[n-1] == '(' && s[i] == ')') || (stack[n-1] == '{' && s[i] == '}') || (stack[n-1] == '[' && s[i] == ']')) {
+                n--
+            } else {
+                return false
+            }
         } else {
-            return false
+            stack[n] = s[i]
+            n++
         }
     }
-    return len(stack) == 0
+    return n == 0
 }

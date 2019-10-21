@@ -4,8 +4,7 @@ func nextGreaterElement(n int) int {
         nums = append(nums, n%10)
         n /= 10
     }
-    Len := len(nums)
-    reverse(nums, 0, Len-1)
+    reverse(nums, 0, len(nums)-1)
     ok := nextPermutation(nums)
     if !ok {
         return -1

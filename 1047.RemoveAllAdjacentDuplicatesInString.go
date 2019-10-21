@@ -1,15 +1,13 @@
 func removeDuplicates(S string) string {
-    n := len(S)
-    stack := make([]string, n)
-    i := -1
-    for _, ch := range S {
-        s := string(ch)
-        if i >= 0 && s == stack[i] {
-            i--
+    stack := make([]byte, len(S))
+    n := 0
+    for i := 0; i < len(S); i++ {
+        if n > 0 && S[i] == stack[n-1] {
+            n--
         } else {
-            i++
-            stack[i] = s
+            stack[n] = S[i]
+            n++
         }
     }
-    return strings.Join(stack[:i+1], "")
+    return string(stack[:n])
 }

@@ -2,7 +2,7 @@
 class ListNode(object):
     def __init__(self, x):
         self.val = x
-181. Employees Earning More Than Their Managers        self.next = None
+        self.next = None
 
 class Solution(object):
     def getIntersectionNode(self, headA, headB):

@@ -1,23 +1,20 @@
 func nextGreaterElement(nums1 []int, nums2 []int) []int {
-	// O(n)
-    stack := []int{}
+    stack, n := make([]int, len(nums2)), 0
     Map := make(map[int]int)
     for _, num := range nums2 {
-        n := len(stack)
         for n > 0 && stack[n-1] < num {
             Map[stack[n-1]] = num
-            stack = stack[:n-1]
             n--
         }
-        stack = append(stack, num)
+        stack[n] = num
+        n++
     }
-    ans := []int{}
-    for _, num := range nums1 {
-        grater, ok := Map[num]
-        if ok {
-            ans = append(ans, grater)
+    ans := make([]int, len(nums1))
+    for i, num := range nums1 {
+        if _, ok := Map[num]; ok {
+            ans[i] = Map[num]
         } else {
-            ans = append(ans, -1)
+            ans[i] = -1
         }
     }
     return ans

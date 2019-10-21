@@ -18,19 +18,15 @@ func trap(height []int) int {
             r--
         }
     }
-    /* DP, O(3n) + O(2n)
-    maxL, max_tmp := make([]int, n), 0
-    for i := 0; i < n; i++ {
-        max_tmp = max(max_tmp, height[i])
-        maxL[i] = max_tmp
+    /* DP, O(2n) + O(2n)
+    left, right := make([]int, n), make([]int, n)
+    left[0], right[n-1] = height[0], height[n-1]
+    for i := 1; i < n; i++ {
+        left[i] = max(left[i-1], height[i])
+        right[n-i-1] = max(right[n-i], height[n-i-1])
     }
-    maxR, max_tmp := make([]int, n), 0
-    for i := n-1; i >= 0; i-- {
-        max_tmp = max(max_tmp, height[i])
-        maxR[i] = max_tmp
-    }
-    for i, h := range height {
-        ans += min(maxL[i], maxR[i]) - h
+    for i := 1; i < n-1; i++ {
+        ans += min(left[i], right[i]) - height[i]
     } */
     return ans
 }
