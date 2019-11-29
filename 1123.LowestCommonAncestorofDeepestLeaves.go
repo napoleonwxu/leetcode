@@ -6,25 +6,21 @@
  *     Right *TreeNode
  * }
  */
-func lcaDeepestLeaves(root *TreeNode) *TreeNode {
-	// O(N) + O(H)
+ func lcaDeepestLeaves(root *TreeNode) *TreeNode {
     ancestor, _ := dfs(root)
     return ancestor
 }
 
-func dfs(node *TreeNode) (ancestor *TreeNode, depth int) {
-    ancestor, depth = &TreeNode{}, 0
+func dfs(node *TreeNode) (*TreeNode, int) {
     if node == nil {
-        return
+        return nil, 0
     }
     ancestorL, depthL := dfs(node.Left)
     ancestorR, depthR := dfs(node.Right)
     if depthL > depthR {
-        ancestor, depth = ancestorL, depthL+1
-    } else if depthL < depthR {
-        ancestor, depth = ancestorR, depthR+1
-    } else {
-        ancestor, depth = node, depthL+1
+        return ancestorL, depthL+1
+    } else if depthR > depthL {
+        return ancestorR, depthR+1
     }
-    return
+    return node, depthL+1
 }

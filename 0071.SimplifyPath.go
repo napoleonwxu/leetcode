@@ -1,7 +1,7 @@
 func simplifyPath(path string) string {
     dir := strings.Split(path, "/")
-    i, j := 0, 0
-    for ; j < len(dir); j++ {
+    i := 0
+    for j := 0; j < len(dir); j++ {
         if dir[j] == "" || dir[j] == "." {
             continue
         } else if dir[j] == ".." {

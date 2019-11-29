@@ -4,7 +4,7 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        ###Binary Search
+        ###Binary Search, O(nlgn)
         lis = [0] * len(nums)
         size = 0
         for num in nums:

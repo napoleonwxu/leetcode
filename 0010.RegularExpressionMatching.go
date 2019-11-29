@@ -1,3 +1,4 @@
+// Similar with 44. Wildcard Matching 
 // https://leetcode.com/problems/regular-expression-matching/discuss/5651/Easy-DP-Java-Solution-with-detailed-Explanation
 func isMatch(s string, p string) bool {
     m, n := len(s), len(p)
@@ -14,7 +15,7 @@ func isMatch(s string, p string) bool {
             if s[i-1] == p[j-1] || p[j-1] == '.' {
                 dp[i][j] = dp[i-1][j-1]
             } else if p[j-1] == '*' {
-                if p[j-2] == s[i-1] || p[j-2] == '.' {
+                if s[i-1] == p[j-2] || p[j-2] == '.' {
                     dp[i][j] = dp[i-1][j] || dp[i][j-1] || dp[i][j-2]
                 } else {
                     dp[i][j] = dp[i][j-2]

@@ -7,9 +7,10 @@
  */
  func isPalindrome(head *ListNode) bool {
     slow, fast := head, head
+    // List will be modified, O(n) + O(1)
     for fast != nil && fast.Next != nil {
-        fast = fast.Next.Next
         slow = slow.Next
+        fast = fast.Next.Next
     }
     tail := reverse(slow)
     for head != nil && tail != nil {
@@ -18,6 +19,25 @@
         }
         head, tail = head.Next, tail.Next
     }
+    /* List will not be modified, O(n) + O(n)
+    stack := []int{}
+    for fast != nil && fast.Next != nil {
+        stack = append(stack, slow.Val)
+        slow = slow.Next
+        fast = fast.Next.Next
+    }
+    idx := len(stack) - 1
+    if fast != nil { // odd
+        slow = slow.Next
+    }
+    for slow != nil {
+        if slow.Val != stack[idx] {
+            return false
+        }
+        slow = slow.Next
+        idx--
+    }
+    */
     return true
 }
 

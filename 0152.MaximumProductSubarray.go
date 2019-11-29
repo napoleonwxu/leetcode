@@ -1,8 +1,10 @@
 func maxProduct(nums []int) int {
-    n := len(nums)
+    if len(nums) == 0 {
+        return 0
+    }
     ans := nums[0]
     Max, Min := nums[0], nums[0]
-    for i := 1; i < n; i++ {
+    for i := 1; i < len(nums); i++ {
         if nums[i] < 0 {
             Max, Min = Min, Max
         }

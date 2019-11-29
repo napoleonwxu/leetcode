@@ -1,16 +1,19 @@
 func maxArea(height []int) int {
-    area := 0
-    i, j := 0, len(height)-1
-    for i < j {
-        if height[i] < height[j] {
-            area = max(area, (j-i)*height[i])
-            i++
+    if len(height) < 2 {
+        return 0
+    }
+    ans := 0
+    left, right := 0, len(height)-1
+    for left < right {
+        if height[left] <= height[right] {
+            ans = max(ans, (right-left) * height[left])
+            left++
         } else {
-            area = max(area, (j-i)*height[j])
-            j--
+            ans = max(ans, (right-left) * height[right])
+            right--
         }
     }
-    return area
+    return ans
 }
 
 func max(x, y int) int {

@@ -6,35 +6,33 @@
  *     Right *TreeNode
  * }
  */
- func zigzagLevelOrder(root *TreeNode) [][]int {
-    if root == nil {
-        return nil
-    }
-    ans := [][]int{}
-    queue := []*TreeNode{root}
-    for len(queue) > 0 {
-        vals := []int{}
-        nxt := []*TreeNode{}
-        for _, node := range queue {
-            vals = append(vals, node.Val)
-            if node.Left != nil {
-                nxt = append(nxt, node.Left)
-            }
-            if node.Right != nil {
-                nxt = append(nxt, node.Right)
-            }
-        }
-        ans = append(ans, vals)
-        queue = nxt
-    }
-    for i := 1; i < len(ans); i += 2 {
-        reverse(ans[i])
-    }
-    return ans
-}
 
-func reverse(vals []int) {
-    for i, j := 0, len(vals)-1; i < j; i, j= i+1, j-1 {
-        vals[i], vals[j] = vals[j], vals[i]
-    }
-}
+ var ans [][]int
+
+ func zigzagLevelOrder(root *TreeNode) [][]int {
+     ans = [][]int{}
+     dfs(root, 0)
+     for i := 1; i < len(ans); i += 2 {
+         reverse(ans[i])
+     }
+     return ans
+ }
+ 
+ func dfs(node *TreeNode, i int) {
+     if node == nil {
+         return
+     }
+     if len(ans) == i {
+         ans = append(ans, []int{node.Val})
+     } else {
+         ans[i] = append(ans[i], node.Val)
+     }
+     dfs(node.Left, i+1)
+     dfs(node.Right, i+1)
+ }
+ 
+ func reverse(nums []int) {
+     for l, r := 0, len(nums)-1; l < r; l, r = l+1, r-1 {
+         nums[l], nums[r] = nums[r], nums[l]
+     }
+ }

@@ -1,3 +1,10 @@
+/* The differance with 10. Regular Expression Matching:
+'*' Matches any sequence of characters (including the empty sequence).
+s = "aab"
+p = "c*a*b"
+Output: false
+But Regular Expression return true.
+*/
 func isMatch(s string, p string) bool {
     m, n := len(s), len(p)
     // O(m+n) + O(1)

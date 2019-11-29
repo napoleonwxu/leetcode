@@ -21,9 +21,9 @@ func findTargetSumWays(nums []int, S int) int {
     target := (sum+S) >> 1
     dp := make([]int, target+1)
     dp[0] = 1
-    for _, n := range nums {
-        for s := target; s >= n; s-- {
-            dp[s] += dp[s-n]
+    for _, num := range nums {
+        for i := target; i >= n; i-- {
+            dp[i] += dp[i-num]
         }
     }
     return dp[target]

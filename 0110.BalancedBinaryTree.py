@@ -12,12 +12,14 @@ class Solution(object):
         :rtype: bool
         """
         '''
+        # Top-down, O(nlgn)
         if not root:# or (not root.left and not root.right):
             return True
         if abs(self.depth(root.left)-self.depth(root.right)) > 1:
             return False
         return self.isBalanced(root.left) and self.isBalanced(root.right)
         '''
+        # Bottom-up, O(n)
         self.balance = True
         self.search(root)
         return self.balance

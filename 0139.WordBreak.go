@@ -5,11 +5,9 @@ func wordBreak(s string, wordDict []string) bool {
     for i := 1; i <= n; i++ {
         for _, word := range wordDict {
             m := len(word)
-            if i >= m && dp[i-m] {
-                if s[i-m:i] == word {
-                    dp[i] = true
-                    break
-                }
+            if i >= m && s[i-m:i] == word && dp[i-m] {
+                dp[i] = true
+                break
             }
         }
     }
