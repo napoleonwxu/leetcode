@@ -1,6 +1,6 @@
 // 1. sort: O(NlgN)
 // 2. sort with heap: O(NlgK), refer 692.Top K Frequent Words
-// 3. quick select: average O(N) <== O(N) + O(N/2) + O(N/4) + ... ==> worst: O(N^2)
+// 3. quick select: average O(N) <== O(N) + O(N/2) + O(N/4) + ... = O(2N) ==> worst: O(N^2)
 
 func kClosest(points [][]int, K int) [][]int {
     // quick select: average O(N), and result is not sorted

@@ -1,5 +1,5 @@
 func minSubArrayLen(s int, nums []int) int {
-	// O(n)
+    // O(n)
     ans := len(nums) + 1
     sum, i := 0, 0
     for j, num := range nums {

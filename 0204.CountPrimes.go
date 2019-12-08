@@ -1,3 +1,6 @@
+// https://www.geeksforgeeks.org/sieve-of-eratosthenes/
+// O(N*log(log(N)))
+
 func countPrimes(n int) int {
     if n <= 2 {
         return 0

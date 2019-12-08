@@ -6,6 +6,7 @@ func fourSum(nums []int, target int) [][]int {
 }
 
 func kSum(nums, path []int, target, k, lo int, ans *[][]int) {
+    // O(n^(k-1))
     n := len(nums)
     if n-lo < k || k < 2 || target < k*nums[lo] || target > k*nums[n-1] {
         return

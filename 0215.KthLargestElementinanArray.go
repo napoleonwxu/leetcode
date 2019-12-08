@@ -1,5 +1,9 @@
+// ByteDance-Lark
 func findKthLargest(nums []int, k int) int {
-	// selection algorithm, O(N) best case / O(N^2) worst case running time + O(1) memory
+    /* quick select: 
+    average: O(n) + O(n/2) + O(n/4) + O(n/8) + ... = O(2n) = O(n)
+    worst case: O(n^2)
+    */
     left, right := 0, len(nums)-1
     for left < right {
         mid := partition(nums, left, right)

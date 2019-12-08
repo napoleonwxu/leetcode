@@ -1,4 +1,5 @@
 func threeSumClosest(nums []int, target int) int {
+    // O(n^2)
     n := len(nums)
     if n < 3 {
         return 0

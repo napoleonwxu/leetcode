@@ -5,9 +5,9 @@ func twoSum(numbers []int, target int) []int {
         if sum == target {
             return []int{left+1, right+1}
         } else if sum < target {
-            left += 1
+            left++
         } else {
-            right -= 1
+            right--
         }
     }
     return nil
