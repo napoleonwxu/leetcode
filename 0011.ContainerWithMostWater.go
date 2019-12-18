@@ -1,7 +1,4 @@
 func maxArea(height []int) int {
-    if len(height) < 2 {
-        return 0
-    }
     ans := 0
     left, right := 0, len(height)-1
     for left < right {

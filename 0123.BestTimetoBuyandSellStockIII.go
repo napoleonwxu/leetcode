@@ -18,6 +18,17 @@ func maxProfit(prices []int) int {
         }
     }
     return dp[K][N-1]
+    /* O(n) + O(1)
+    buy1, sell1 := math.MinInt32, 0
+    buy2, sell2 := math.MinInt32, 0
+    for _, price := range prices {
+        sell2 = max(sell2, buy2+price)
+        buy2 = max(buy2, sell1-price)
+        sell1 = max(sell1, buy1+price)
+        buy1 = max(buy1, -price)
+    }
+    return sell2
+    */
 }
 
 func max(x, y int) int {

@@ -19,7 +19,7 @@ func fullJustify(words []string, maxWidth int) []string {
             line, width = []string{word}, len(word)
         }
     }
-    tmp := strings.Join(line, " ")
-    ans = append(ans, tmp+strings.Repeat(" ", maxWidth-len(tmp)))
+    last := strings.Join(line, " ")
+    ans = append(ans, last+strings.Repeat(" ", maxWidth-len(last)))
     return ans
 }

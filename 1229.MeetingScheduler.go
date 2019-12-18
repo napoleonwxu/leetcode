@@ -22,7 +22,7 @@ slots2[i][0] < slots2[i][1]
 */
 
 func minAvailableDuration(slots1 [][]int, slots2 [][]int, duration int) []int {
-    // solution2, meeting room
+    // solution2, meeting room: O(2nlog2n), n: len(slot1)+len(slot2)
     times := make([][]int, 0, 2*(len(slots1)+len(slots2)))
     for _, slot := range slots1 {
         times = append(times, []int{slot[0], 1}, []int{slot[1], -1})
@@ -41,7 +41,7 @@ func minAvailableDuration(slots1 [][]int, slots2 [][]int, duration int) []int {
         now = time[0]
         cnt += time[1]
     }
-    /* solution1
+    /* solution1: O(nlogn), n: len(slot1)+len(slot2)
     slot := append(slots1, slots2...)
     sort.Slice(slot, func(i, j int) bool {
         return slot[i][0] < slot[j][0]

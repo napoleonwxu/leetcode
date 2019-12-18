@@ -12,7 +12,7 @@ func carPooling(trips [][]int, capacity int) bool {
             return false
         }
     }
-    /* O(nlgn) + O(n*n)
+    /* O(nlgn) ?
     sort.Slice(trips, func(i, j int) bool {
         return trips[i][1] < trips[j][1]
     })

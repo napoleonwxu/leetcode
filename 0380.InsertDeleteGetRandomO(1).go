@@ -29,8 +29,8 @@ func (this *RandomizedSet) Remove(val int) bool {
     }
     last := len(this.num) - 1
     if last != i {
+        this.idx[this.num[last]] = i
         this.num[i] = this.num[last]
-        this.idx[this.num[i]] = i
     }
     this.num = this.num[:last]
     delete(this.idx, val)

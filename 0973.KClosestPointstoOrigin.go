@@ -5,11 +5,11 @@
 func kClosest(points [][]int, K int) [][]int {
     // quick select: average O(N), and result is not sorted
     left, right := 0, len(points)-1
-    for left <= right {
+    for left < right {
         mid := partition(points, left, right)
-        if mid == K {
+        if mid == K-1 {
             break
-        } else if mid < K {
+        } else if mid < K-1 {
             left = mid + 1
         } else {
             right = mid - 1
@@ -23,6 +23,19 @@ func kClosest(points [][]int, K int) [][]int {
     return points[:K]
 }
 
+func partition(points [][]int, l, r int) int {
+    dis := points[r][0]*points[r][0] + points[r][1]*points[r][1]
+    mid := l
+    for i := l; i < r; i++ {
+        if points[i][0]*points[i][0] + points[i][1]*points[i][1] < dis {
+            points[i], points[mid] = points[mid], points[i]
+            mid++
+        }
+    }
+    points[mid], points[r] = points[r], points[mid]
+    return mid
+}
+/*
 func partition(points [][]int, l, r int) int {
     pivot, pivot_dis := points[l], dis(points[l])
     for l < r {
@@ -38,3 +51,4 @@ func partition(points [][]int, l, r int) int {
 func dis(p []int) int {
     return p[0]*p[0] + p[1]*p[1]
 }
+*/

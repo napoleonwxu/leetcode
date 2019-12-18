@@ -8,7 +8,7 @@ func productExceptSelf(nums []int) []int {
     }
     right := 1
     for i := n-1; i >= 0; i-- {
-        ans[i] = ans[i] * right
+        ans[i] *= right
         right *= nums[i]
     }
     /* O(n) + O(n)

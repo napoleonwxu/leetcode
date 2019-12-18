@@ -1,6 +1,7 @@
 func addStrings(num1 string, num2 string) string {
-    ans := make([]byte, max(len(num1),len(num2))+1)
-    i, j, k := len(num1)-1, len(num2)-1, len(ans)
+    m, n := len(num1), len(num2)
+    ans := make([]byte, max(m, n)+1)
+    i, j, k := m-1, n-1, len(ans)-1
     c := byte(0)
     for i >= 0 || j >= 0 || c > 0 {
         if i >= 0 {
@@ -11,11 +12,11 @@ func addStrings(num1 string, num2 string) string {
             c += num2[j] - '0'
             j--
         }
-        k--
         ans[k] = c%10 + '0'
         c /= 10
+        k--
     }
-    return string(ans[k:])
+    return string(ans[k+1:])
 }
 
 func max(x, y int) int {

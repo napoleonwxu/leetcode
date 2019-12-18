@@ -24,6 +24,11 @@
         minRight := findMin(root.Right)
         root.Val = minRight
         root.Right = deleteNode(root.Right, minRight)
+        /*
+        maxLeft := findMax(root.Left)
+        root.Val = maxLeft
+        root.Left = deleteNode(root.Left, maxLeft)
+        */
     }
     return root
 }
@@ -31,6 +36,13 @@
 func findMin(node *TreeNode) int {
     for node.Left != nil {
         node = node.Left
+    }
+    return node.Val
+}
+
+func findMax(node *TreeNode) int {
+    for node.Right != nil {
+        node = node.Right
     }
     return node.Val
 }

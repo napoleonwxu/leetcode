@@ -1,19 +1,13 @@
 func splitArray(nums []int, m int) int {
-    max, sum := 0, 0
+    left, right := 0, 0
     for _, num := range nums {
-        if num > max {
-            max = num
-        }
-        sum += num
+        left = max(left, num)
+        right += num
     }
-    if m == 1 {
-        return sum
-    }
-    left, right := max, sum
-    for left <= right {
+    for left < right {
         mid := (left+right) >> 1
-        if canSplit(nums, m, mid) {
-            right = mid - 1
+        if split(nums, mid) <= m {
+            right = mid
         } else {
             left = mid + 1
         }
@@ -21,17 +15,21 @@ func splitArray(nums []int, m int) int {
     return left
 }
 
-func canSplit(nums []int, m, target int) bool {
-    sum, cnt := 0, 1
+func split(nums []int, target int) int {
+    cnt, sum := 1, 0
     for _, num := range nums {
         sum += num
         if sum > target {
-            sum = num
             cnt++
-            if cnt > m {
-                return false
-            }
+            sum = num
         }
     }
-    return true
+    return cnt
+}
+
+func max(x, y int) int {
+    if x > y {
+        return x
+    }
+    return y
 }
