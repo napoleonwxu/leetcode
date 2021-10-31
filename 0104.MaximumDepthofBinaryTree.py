@@ -13,13 +13,15 @@ class Solution(object):
         """
         if not root:
             return 0
-        '''
-        if not root.left:
-            return self.maxDepth(root.right) + 1
-        if not root.right:
-            return self.maxDepth(root.left) + 1
-        '''
         #return max(self.maxDepth(root.left), self.maxDepth(root.right)) + 1
+        '''
+        depth = 0
+        queue = [(root, 1)]
+        while queue:
+            node, depth = queue.pop(0)
+            queue += [(n, depth+1) for n in [node.left, node.right] if n]
+        return depth
+        '''
         q = collections.deque([(root, 1)])
         while q:
             node, leval = q.popleft()
@@ -28,4 +30,4 @@ class Solution(object):
             if node.right:
                 q.append((node.right, leval+1))
         return leval
-                
+        
