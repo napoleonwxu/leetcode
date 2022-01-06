@@ -1,17 +1,19 @@
+import "strings"
+
 func simplifyPath(path string) string {
-    dir := strings.Split(path, "/")
-    i := 0
-    for j := 0; j < len(dir); j++ {
-        if dir[j] == "" || dir[j] == "." {
-            continue
-        } else if dir[j] == ".." {
-            if i > 0 {
-                i--
-            }
-        } else {
-            dir[i] = dir[j]
-            i++
-        }
-    }
-    return "/" + strings.Join(dir[:i], "/")
+	dirs := strings.Split(path, "/")
+	i := 0
+	for _, dir := range dirs {
+		if dir == "" || dir == "." {
+			continue
+		} else if dir == ".." {
+			if i > 0 {
+				i--
+			}
+		} else {
+			dirs[i] = dir
+			i++
+		}
+	}
+	return "/" + strings.Join(dirs[:i], "/")
 }

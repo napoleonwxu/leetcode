@@ -5,22 +5,22 @@ func loudAndRich(richer [][]int, quiet []int) []int {
         graph[r[1]] = append(graph[r[1]], r[0])
     }
     ans := make([]int, n)
-    for i := 0; i < n; i++ {
+    for i := range ans {
         ans[i] = -1
     }
     for i := 0; i < n; i++ {
-        dfs(graph, quiet, i, ans)
+        dfs(graph, quiet, ans, i)
     }
     return ans
 }
 
-func dfs(graph [][]int, quiet []int, i int, ans []int) int {
+func dfs(graph [][]int, quiet, ans []int, i int) int {
     if ans[i] != -1 {
         return ans[i]
     }
     ans[i] = i
     for _, j := range graph[i] {
-        cand := dfs(graph, quiet, j, ans)
+        cand := dfs(graph, quiet, ans, j)
         if quiet[cand] < quiet[ans[i]] {
             ans[i] = cand
         }

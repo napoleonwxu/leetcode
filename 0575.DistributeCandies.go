@@ -1,10 +1,14 @@
-func distributeCandies(candies []int) int {
-    Map := make(map[int]bool)
-    for _, candy := range candies {
-        Map[candy] = true
-    }
-    if len(Map) >= len(candies)>>1 {
-        return len(candies)>>1
-    }
-    return len(Map)
+func distributeCandies(candyType []int) int {
+	m := make(map[int]bool)
+	for _, candy := range candyType {
+		m[candy] = true
+	}
+	return min(len(m), len(candyType)/2)
+}
+
+func min(x, y int) int {
+	if x < y {
+		return x
+	}
+	return y
 }
