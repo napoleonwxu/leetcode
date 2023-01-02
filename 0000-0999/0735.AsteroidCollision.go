@@ -1,22 +1,22 @@
-// Python solution is better to understand
 func asteroidCollision(asteroids []int) []int {
-    var ans []int
-    i := -1
-    for _, n := range asteroids {
-        for i >= 0 && ans[i] > 0 && n < 0 {
-            if ans[i] < -n {
-                ans = ans[:i]
-                i--
-                continue
-            } else if ans[i] == -n {
-                ans = ans[:i]
-                i--
+    stack := make([]int, 0, len(asteroids))
+    for _, asteroid := range asteroids {
+        needAdd := true
+        for len(stack) > 0 && stack[len(stack)-1] > 0 && asteroid < 0 {
+            if stack[len(stack)-1] < -asteroid {
+                stack = stack[:len(stack)-1]
+            } else if stack[len(stack)-1] == -asteroid {
+                stack = stack[:len(stack)-1]
+                needAdd = false
+                break
+            } else {
+                needAdd = false
+                break
             }
-            goto next
         }
-        ans = append(ans, n)
-        i++
-        next:
+        if needAdd {
+            stack = append(stack, asteroid)
+        }
     }
-    return ans
+    return stack
 }
