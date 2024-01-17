@@ -1,18 +1,16 @@
 func maxProduct(nums []int) int {
-    if len(nums) == 0 {
-        return 0
-    }
-    ans := nums[0]
-    Max, Min := nums[0], nums[0]
-    for i := 1; i < len(nums); i++ {
-        if nums[i] < 0 {
-            Max, Min = Min, Max
+    ans := math.MinInt32
+    mi, ma := 1, 1
+    for _, num := range nums {
+        if num < 0 {
+            mi, ma = ma, mi
         }
-        Max = max(Max*nums[i], nums[i])
-        Min = min(Min*nums[i], nums[i])
-        ans = max(ans, Max)
+        mi = min(mi*num, num)
+        ma = max(ma*num, num)
+        ans = max(ans, ma)
     }
     /*
+    n := len(nums)
     l, r := 0, 0
     for i := 0; i < n; i++ {
         if l != 0 {

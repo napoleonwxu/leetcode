@@ -1,4 +1,4 @@
-// Similar with 44. Wildcard Matching 
+// Similar with 44. Wildcard Matching
 // https://leetcode.com/problems/regular-expression-matching/discuss/5651/Easy-DP-Java-Solution-with-detailed-Explanation
 func isMatch(s string, p string) bool {
     m, n := len(s), len(p)
@@ -8,7 +8,7 @@ func isMatch(s string, p string) bool {
     }
     dp[0][0] = true
     for j := 1; j <= n; j++ {
-        dp[0][j] = (p[j-1] == '*' && dp[0][j-2])
+        dp[0][j] = p[j-1] == '*' && dp[0][j-2]
     }
     for i := 1; i <= m; i++ {
         for j := 1; j <= n; j++ {

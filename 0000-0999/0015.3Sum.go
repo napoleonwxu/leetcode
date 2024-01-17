@@ -1,7 +1,7 @@
 func threeSum(nums []int) [][]int {
-    n := len(nums)
     sort.Ints(nums)
     ans := [][]int{}
+    n := len(nums)
     for i := 0; i < n-2; i++ {
         if nums[i] > 0 {
             break
@@ -9,17 +9,19 @@ func threeSum(nums []int) [][]int {
         if i > 0 && nums[i] == nums[i-1] {
             continue
         }
-        lo, hi := i+1, n-1
-        for lo < hi {
-            if nums[lo]+nums[hi] == -nums[i] {
-                ans = append(ans, []int{nums[i], nums[lo], nums[hi]})
-                for ; lo < hi && nums[lo] == nums[lo+1]; lo++ {}
-                for ; lo < hi && nums[hi] == nums[hi-1]; hi-- {}
-                lo, hi = lo+1, hi-1
-            } else if nums[lo]+nums[hi] < -nums[i] {
-                lo++
+        j, k := i+1, n-1
+        for j < k {
+            if nums[i]+nums[j]+nums[k] == 0 {
+                ans = append(ans, []int{nums[i], nums[j], nums[k]})
+                for ; j < k && nums[j] == nums[j+1]; j++ {
+                }
+                for ; j < k && nums[k] == nums[k-1]; k-- {
+                }
+                j, k = j+1, k-1
+            } else if nums[i]+nums[j]+nums[k] < 0 {
+                j++
             } else {
-                hi--
+                k--
             }
         }
     }

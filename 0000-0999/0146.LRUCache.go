@@ -6,43 +6,38 @@ type Node struct {
 }
 
 type LRUCache struct {
-    size int
-    Map map[int]*Node
+    cap  int
+    m    map[int]*Node
     head *Node
     tail *Node
 }
 
-
 func Constructor(capacity int) LRUCache {
-    h := &Node{key: 0, val: 0}
-    t := &Node{key: 0, val: 0}
+    h := &Node{}
+    t := &Node{pre: h}
     h.nxt = t
-    t.pre = h
-    return LRUCache{size: capacity, Map: make(map[int]*Node, capacity+1), head: h, tail: t}
+    return LRUCache{cap: capacity, m: make(map[int]*Node, capacity+1), head: h, tail: t}
 }
-
 
 func (this *LRUCache) Get(key int) int {
-    node, ok := this.Map[key]
-    if ok {
-        this.remove(node)
-        this.add(node)
-        return node.val
+    node, ok := this.m[key]
+    if !ok {
+        return -1
     }
-    return -1
+    this.remove(node)
+    this.add(node)
+    return node.val
 }
 
-
-func (this *LRUCache) Put(key int, value int)  {
-    node, ok := this.Map[key]
-    if ok {
+func (this *LRUCache) Put(key int, value int) {
+    if node, ok := this.m[key]; ok {
         this.remove(node)
     }
-    node = &Node{key: key, val: value}
+    node := &Node{key: key, val: value}
     this.add(node)
-    this.Map[key] = node
-    if len(this.Map) > this.size {
-        delete(this.Map, this.tail.pre.key)
+    this.m[key] = node
+    if len(this.m) > this.cap {
+        delete(this.m, this.tail.pre.key)
         this.remove(this.tail.pre)
     }
 }

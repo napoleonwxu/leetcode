@@ -2,7 +2,7 @@ func merge(intervals [][]int) [][]int {
     sort.Slice(intervals, func(i, j int) bool {
         return intervals[i][0] < intervals[j][0]
     })
-    ans := [][]int{}
+    ans := make([][]int, 0, len(intervals))
     for _, interval := range intervals {
         n := len(ans)
         if n == 0 || ans[n-1][1] < interval[0] {

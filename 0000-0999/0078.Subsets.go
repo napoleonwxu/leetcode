@@ -1,14 +1,12 @@
 func subsets(nums []int) [][]int {
-    p := 1 << uint(len(nums))
-    ans := make([][]int, p)
-    for i := 0; i < p; i++ {
-        sub := []int{}
-        for j := 0; j < len(nums); j++ {
-            if i&(1<<uint(j)) != 0 {
-                sub = append(sub, nums[j])
+    n := len(nums)
+    ans := make([][]int, 1<<n)
+    for i := 0; i < 1<<n; i++ {
+        for j, num := range nums {
+            if i&(1<<j) != 0 {
+                ans[i] = append(ans[i], num)
             }
         }
-        ans[i] = sub
     }
     /*
     ans := [][]int{}

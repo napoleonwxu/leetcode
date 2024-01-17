@@ -1,17 +1,16 @@
 func isValid(s string) bool {
-    stack, n := make([]byte, len(s)), 0
-    for i := 0; i < len(s); i++ {
-        if s[i] == ')' || s[i] == ']' || s[i] == '}' {
-            if n > 0 && (stack[n-1] == '(' && s[i] == ')' || 
-                         stack[n-1] == '[' && s[i] == ']' || 
-                         stack[n-1] == '{' && s[i] == '}') {
-                n--
-            } else {
-                return false
-            }
-        } else {
-            stack[n] = s[i]
+    stack := make([]byte, len(s))
+    n := 0
+    for _, ch := range []byte(s) {
+        if ch == '(' || ch == '{' || ch == '[' {
+            stack[n] = ch
             n++
+        } else if n > 0 && (stack[n-1] == '(' && (ch == ')') ||
+            (stack[n-1] == '{' && ch == '}') ||
+            (stack[n-1] == '[' && ch == ']')) {
+            n--
+        } else {
+            return false
         }
     }
     return n == 0

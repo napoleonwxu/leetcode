@@ -1,6 +1,8 @@
+import "math/rand"
+
 // ByteDance-Lark
 func findKthLargest(nums []int, k int) int {
-    /* quick select: 
+    /* quick select:
     average: O(n) + O(n/2) + O(n/4) + O(n/8) + ... = O(2n) = O(n)
     worst case: O(n^2)
     */
@@ -23,6 +25,20 @@ func partition(nums []int, l, r int) int {
     for i := l; i < r; i++ {
         if nums[i] > nums[r] {
             nums[mid], nums[i] = nums[i], nums[mid]
+            mid++
+        }
+    }
+    nums[mid], nums[r] = nums[r], nums[mid]
+    return mid
+}
+
+func partition2(nums []int, l, r int) int {
+    piv := l + rand.Intn(r-l+1)
+    nums[piv], nums[r] = nums[r], nums[piv]
+    mid := l
+    for i := l; i < r; i++ {
+        if nums[i] > nums[r] {
+            nums[i], nums[mid] = nums[mid], nums[i]
             mid++
         }
     }
