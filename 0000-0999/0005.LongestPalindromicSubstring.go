@@ -1,12 +1,26 @@
 func longestPalindrome(s string) string {
+    // O(n^2)
+    ans := ""
+    i, n := 0, len(s)
+    for i < n {
+        l, r := i-1, i+1
+        for ; r < n && s[r] == s[i]; r++ {}
+        i = r
+        for ; l >= 0 && r < n && s[l] == s[r]; l, r = l-1, r+1 {}
+        if r-l-1 > len(ans) {
+            ans = s[l+1:r]
+        }
+    }
+    return ans
+    /* Expand, O(n^2) + O(1)
     n := len(s)
-    // Expand, O(n^2) + O(1)
     idx, maxLen := 0, 0
     for i := 0; i < n && n-i > maxLen>>1; i++ {
         expand(s, i, i, &idx, &maxLen)
         expand(s, i, i+1, &idx, &maxLen)
     }
     return s[idx:idx+maxLen]
+    */
     /* DP, O(n^2) + O(n^2)
     dp := make([][]bool, n)
     for i := range dp {

@@ -7,13 +7,11 @@
  * }
  */
  func isCompleteTree(root *TreeNode) bool {
-    //BFS
+    // BFS
     queue := []*TreeNode{root}
     i := 0
-    for queue[i] != nil {
-        queue = append(queue, queue[i].Left)
-        queue = append(queue, queue[i].Right)
-        i++
+    for ; queue[i] != nil; i++ {
+        queue = append(queue, queue[i].Left, queue[i].Right)
     }
     for ; i < len(queue); i++ {
         if queue[i] != nil {

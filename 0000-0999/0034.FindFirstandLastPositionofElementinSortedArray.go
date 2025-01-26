@@ -1,14 +1,21 @@
 func searchRange(nums []int, target int) []int {
-    left := searchLeft(nums, target)
+    left := insertRight(nums, target-1)
+    right := insertRight(nums, target)
+    if left == right {
+        return []int{-1, -1}
+    }
+    return []int{left, right-1}
+    /*
+    left := insertLeft(nums, target)
     if left < 0 || left >= len(nums) || nums[left] != target {
         return []int{-1, -1}
     }
-    
-    right := searchRight(nums, target)
+    right := insertRight(nums, target)
     return []int{left, right-1}
+    */
 }
 
-func searchLeft(nums []int, target int) int {
+func insertLeft(nums []int, target int) int {
     left, right := 0, len(nums)
     for left < right {
         mid := (left + right) / 2
@@ -21,7 +28,7 @@ func searchLeft(nums []int, target int) int {
     return left
 }
 
-func searchRight(nums []int, target int) int {
+func insertRight(nums []int, target int) int {
     left, right := 0, len(nums)
     for left < right {
         mid := (left + right) / 2

@@ -1,20 +1,15 @@
-func myAtoi(str string) int {
-    n := len(str)
-    i := 0
-    for ; i < n && str[i] == ' '; i++ {}
-    if i >= n {
-        return 0
-    }
-    sign := 1
-    if str[i] == '-' {
-        sign = -1
-        i++
-    } else if str[i] == '+' {
+func myAtoi(s string) int {
+    sign, num := 1, 0
+    i, n :=0, len(s)
+    for ; i < n && s[i] == ' '; i++ {}
+    if i < n && (s[i] == '-' || s[i] == '+') {
+        if s[i] == '-' {
+            sign = -1
+        }
         i++
     }
-    num := 0
-    for ; i < n && str[i] >= '0' && str[i] <= '9'; i++ {
-        d := int(str[i]-'0')
+    for ; i < n && s[i] >= '0' && s[i] <= '9'; i++ {
+        d := int(s[i]-'0')
         if num > math.MaxInt32/10 || (num == math.MaxInt32/10 && d > math.MaxInt32%10) {
             if sign == 1 {
                 return math.MaxInt32
